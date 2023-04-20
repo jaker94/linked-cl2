@@ -1,11 +1,11 @@
 function Headerlink({ Icon, text, avatar, feed }) {
   return (
     <div
-      className={`cursor-pointer flex flex-col justify-center items-center
+      className={`headerLinkParent
     ${
       feed
-        ? "text-black/60 hover:text-black dark:text-white/75 dark:hover:text-white lg:-mb-1.5 space-y-1"
-        : "text-gray-500 hover:text-gray-700"
+        ? "headerLinkFeedPresent"
+        : "headerLinkFeedAbsent"
     }`}
     >
       {avatar ? <Icon sx={{ fontSize: 30 }} /> : <Icon />}
