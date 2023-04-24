@@ -12,25 +12,32 @@ import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import AppsOutlinedIcon from "@mui/icons-material/AppsOutlined";
 import { Avatar } from "@mui/material";
 import { useTheme } from "next-themes";
+import { motion } from "framer-motion";
 
-
+const spring = {
+  type: "spring",
+  stiffness: 700,
+  damping: 30,
+};
 
 function Header() {
-
   const [mounted, setMounted] = useState(false);
   const { setTheme, resolvedTheme, theme } = useTheme();
 
   useEffect(() => setMounted(true), []);
   return (
-    <header>
+    <header
+      className="sticky top-0 z-40 bg-white dark:bg-[#1d2226] 
+    flex items-center justify-around py-1.5 px-3 focus-within:shadow-lg"
+    >
       {/* Left */}
       <div className="flex items-center space-x-2 w-full max-w-xs">
         {mounted && (
           <>
             {resolvedTheme === "dark" ? (
-              <Image src={Dark} width={45} height={45} />
+              <Image src={Dark} height={55} alt="" priority={1} />
             ) : (
-              <Image src={Light} width={55} height={55} />
+              <Image src={Light} height={55} alt="" priority={1} />
             )}
           </>
         )}
@@ -54,8 +61,8 @@ function Header() {
         <Headerlink Icon={Avatar} text="Me" feed avatar hidden />
         <Headerlink Icon={AppsOutlinedIcon} text="Work" feed hidden />
 
-      {/* Dark Mode Toggle */}
-      {mounted && (
+        {/* Dark Mode Toggle */}
+        {mounted && (
           <div
             className={`bg-gray-600 flex items-center px-0.5 rounded-full h-6 w-12 cursor-pointer flex-shrink-0 relative ${
               resolvedTheme === "dark" ? "justify-end" : "justify-start"
