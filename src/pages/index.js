@@ -2,8 +2,12 @@ import { signOut } from "next-auth/react"
 import Head from 'next/head'
 import Header from "../components/Header"
 import Sidebar from "../components/Sidebar"
+import { getSession, useSession } from 'next-auth/react'
 
 export default function Home() {
+  const { data: session } = useSession();
+
+  console.log(session)
   return (
     <div className="bg-[#f3f2ef] dark:bg-black dark:text-white h-screen
     overflow-y-scroll md:space-y-6">
@@ -21,4 +25,21 @@ export default function Home() {
       </main>
     </div>
   )
+}
+
+export async function getServerSideProps(context) {
+const session = await getSession(context)
+if (!session) {
+  return {
+    redirect: {
+      permanent: false,
+      destination: "/home",
+    }
+  }
+}
+return {
+  props: {
+    session,
+  }
+}
 }
