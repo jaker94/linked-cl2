@@ -5,9 +5,9 @@ import IconButton from "@mui/material/IconButton";
 import { useSession } from "next-auth/react";
 import { Avatar } from "@mui/material";
 import Form from "./Form";
-import { useRecoilValue } from "recoil";
-import { getPostState } from "../atoms/postAtom";
-import Post from "./Post";
+// import { useRecoilValue } from "recoil";
+// import { getPostState } from "../atoms/postAtom";
+// import Post from "./Post";
 
 const dropIn = {
   hidden: {
