@@ -25,9 +25,8 @@ function Form() {
         "Content-Type": "application/json",
       } 
     })
-    console.log(response)
     const responseData = await response.json();
-    console.log(responseData)
+    //setHandlePosts(true)
     setModalOpen(false)
   }
 
