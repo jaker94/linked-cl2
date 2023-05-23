@@ -10,25 +10,39 @@ function Form() {
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
 
   const uploadPost = async (e) => {
+    console.log("1");
     e.preventDefault();
-    const response = await fetch("/api/posts", {
-      method: "POST",
-      body: JSON.stringify({
-        input: input,
-        photoUrl: photoUrl,
-        username: session.user.name,
-        email: session.user.email,
-        userImg: session.user.image,
-        createdAt: new Date().toString(),
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      } 
-    })
-    const responseData = await response.json();
-    //setHandlePosts(true)
-    setModalOpen(false)
-  }
+  
+    try {
+      const response = await fetch("/api/posts/posts", {
+        method: "POST",
+        body: JSON.stringify({
+          input: input,
+          photoUrl: photoUrl,
+          username: session.user.name,
+          email: session.user.email,
+          userImg: session.user.image,
+          createdAt: new Date().toString(),
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(response)
+  
+      if (!response.ok) {
+        throw new Error("Failed to upload post");
+      }
+  
+      const responseData = await response.json();
+      console.log(responseData);
+      // setHandlePosts(true);
+      setModalOpen(false);
+    } catch (error) {
+      console.error(error);
+      // Handle the error and display an appropriate error message to the user
+    }
+  };
 
   return (
     <form
@@ -46,7 +60,7 @@ function Form() {
         type="text"
         placeholder="Add a photo URL(optional)"
         className="bg-transparent focus:outline-none truncate max-w-xs md:max-w-sm dark:placeholder-white/75"
-        value={input}
+        value={photoUrl}
         onChange={(e) => setPhotoUrl(e.target.value)}
       />
       <button

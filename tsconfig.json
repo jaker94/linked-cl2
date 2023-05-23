@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/middleware.js", "lib/mongodb.js", "src/util/mongodb.js"  ],
+, "src/_middleware.js", "lib/mongodb.js", "src/util/mongodb.js"  ],
   "exclude": [
     "node_modules"
   ]
