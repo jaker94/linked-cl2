@@ -1,10 +1,10 @@
 import React from 'react'
 
-function Post({post}) {
+function Post({ post,  modalPost}) {
   return (
-    <div>
+    <div className={'bg-white dark:bg-[#1D2226]'}>
     <img src={post.photoUrl} alt="" />
-    <h4></h4>
+    <h4>{post.input}</h4>
     </div>
   )
 }
